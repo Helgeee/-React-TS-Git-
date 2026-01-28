@@ -48,27 +48,45 @@ export class ParamEditor extends React.Component<Props, State> {
       values: initialValues,
     };
   }
-}
-
-
   // обработчик изменения поля
   private handleChange = (paramId: number, value: string) => {
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       values: {
         ...prevState.values,
         [paramId]: value,
-      }
+      },
     }));
+  };
+
+  public getModel(): Model {
+    return {
+      ...this.props.model,
+      paramValues: Object.entries(this.state.values).map(
+        ([paramId, value]) => ({
+          paramId: Number(paramId),
+          value,
+        }),
+      ),
+    };
   }
 
-public getModel(): Model {
-  return {
-    ...this.props.model,
-    paramValues: Object.entries(this.state.values).map(
-      ([paramId, value]) => ({
-        paramId: Number(paramId),
-        value,
-      })
-    ),
-  };
+  render() {
+    const { params } = this.props;
+    const { values } = this.state;
+
+    return (
+      <div>
+        {params.map((param) => (
+          <div key={param.id} style={{ marginBottom: 8 }}>
+            <label style={{ marginRight: 8 }}>{param.name}</label>
+            <input
+              type="text"
+              value={values[param.id]}
+              onChange={(e) => this.handleChange(param.id, e.target.value)}
+            />
+          </div>
+        ))}
+      </div>
+    );
+  }
 }
