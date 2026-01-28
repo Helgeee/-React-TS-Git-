@@ -12,9 +12,13 @@ npm install
 
 npm run dev
 
+---
+
 ### Test:
 
 npx vitest
+
+---
 
 ### Стек:
 
@@ -43,7 +47,8 @@ PASS  src/ParamEditor.test.tsx (3 tests)
 Test Files  1 passed (1)
 Tests       3 passed (3)
 Duration    1.89s
-
 ```
 
 ![vitetest](./img/Test.png)
+
+---
