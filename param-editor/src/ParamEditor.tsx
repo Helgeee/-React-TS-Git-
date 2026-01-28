@@ -49,3 +49,16 @@ export class ParamEditor extends React.Component<Props, State> {
     };
   }
 }
+
+
+  // обработчик изменения поля
+  private handleChange = (paramId: number, value: string) => {
+    this.setState(prevState => ({
+      values: {
+        ...prevState.values,
+        [paramId]: value,
+      }
+    }));
+  }
+
+
