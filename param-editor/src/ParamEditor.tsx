@@ -29,3 +29,23 @@ export interface Props {
 interface State {
   values: Record<number, string>;
 }
+
+export class ParamEditor extends React.Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+
+    const initialValues: Record<number, string> = {};
+
+    props.params.forEach((param) => {
+      const valueFromModel = props.model.paramValues.find(
+        (pv) => pv.paramId === param.id,
+      );
+
+      initialValues[param.id] = valueFromModel?.value ?? "";
+    });
+
+    this.state = {
+      values: initialValues,
+    };
+  }
+}
