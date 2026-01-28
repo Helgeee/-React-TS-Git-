@@ -61,4 +61,14 @@ export class ParamEditor extends React.Component<Props, State> {
     }));
   }
 
-
+public getModel(): Model {
+  return {
+    ...this.props.model,
+    paramValues: Object.entries(this.state.values).map(
+      ([paramId, value]) => ({
+        paramId: Number(paramId),
+        value,
+      })
+    ),
+  };
+}
